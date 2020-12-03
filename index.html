@@ -1,209 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <title>Mouse</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+  <head>
+    <title>Whack_A_Mole</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="mousecatch.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Pangolin&display=swap" rel="stylesheet">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="mole.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body onload="set()">
+      <form>
+      <div class="header container-fluid">
+        <div class="head"><h1><img src="hole.png" style="height: 20px;width: 70px;">Whack-a-Mole<img src="mole.png" style="width: 100px;"></h1></div>
+        <div class="row row1">
+        <div class="col-md-2 col-sm-2 col-xs-2">
+            <p>High Score:<span id="highScore"></span></p>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+            <p>Score : <span id="Score"></span></p>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+            <p>Time-Left : <span id="timeLeft"></span></p>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+            <button type="button" class="btn btn-primary butn" onclick="startGame()" id="butn1">Start</button>
+        </div>
+      </div>
 
-</head>
-<style>
-	h1
-	{
-		text-align: center;
-		font-size: 69px;
-		font-family: 'Pangolin', cursive;
-		padding-top: 40px;
-	}
-	p
-	{
-	font-size: 60px;
-	font-family: 'Gamja Flower', cursive;
-	}
-	#sec
-	{
-		
-		height: auto;
-		width: 100%;
-		margin-left: 0px!important;
-		margin-right: 0px!important;
-	}
-.imag
-{
-	height: 220px;
-	width: 100%;
-	padding-top: 120px;
-}
-.tem
-{
-	/*background-image: url(/home/cedcoss/Downloads/garden.jpg);*/
-	background-color: #3D5C69;
-	height: 167%;
-	width: 100%;
-	position: absolute;
+      </div>
+      <div class="container-fluid bgcolor">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="front">
+                    <img src="mole.png" class="hide" id="mole1" onclick="hit(1)" alt="Image Missing will be Uploaded Soon!!!">
+                </div>
+               <div class="back">
+                    <img src="hole.png" class="hole" alt="Image Missing Will be Uploaded Soon!!!">
+               </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="front">
+                    <img src="mole.png" class="hide" id="mole2" onclick="hit(2)" alt="Image Missing will be Uploaded Soon!!!">
+                </div>
+               <div class="back">
+                    <img src="hole.png" class="hole" alt="Image Missing Will be Uploaded Soon!!!">
+               </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="front">
+                    <img src="mole.png" class="hide" id="mole3" onclick="hit(3)" alt="Image Missing will be Uploaded Soon!!!">
+                </div>
+               <div class="back">
+                    <img src="hole.png" class="hole" alt="Image Missing Will be Uploaded Soon!!!">
+               </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                    <div class="front">
+                        <img src="mole.png" class="hide" id="mole4" onclick="hit(4)" alt="Image Missing will be Uploaded Soon!!!">
+                    </div>
+                   <div class="back">
+                        <img src="hole.png" class="hole" alt="Image Missing Will be Uploaded Soon!!!">
+                   </div>
+            </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="front">
+                    <img src="mole.png" class="hide" id="mole5" onclick="hit(5)" alt="Image Missing will be Uploaded Soon!!!">
+                </div>
+               <div class="back">
+                    <img src="hole.png" class="hole" alt="Image Missing Will be Uploaded Soon!!!">
+               </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="front">
+                    <img src="mole.png" class="hide" id="mole6" onclick="hit(6)" alt="Image Missing will be Uploaded Soon!!!">
+                </div>
+                <div class="back">
+                    <img src="hole.png" class="hole" alt="Image Missing Will be Uploaded Soon!!!">
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="front">
+                    <img src="mole.png" class="hide" id="mole7" onclick="hit(7)" alt="Image Missing will be Uploaded Soon!!!">
+                </div>
+               <div class="back">
+               	<img src="hole.png" class="hole" alt="Image Missing Will be Uploaded Soon!!!">
+               </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="front">
+                    <img src="mole.png" class="hide" id="mole8" onclick="hit(8)" alt="Image Missing will be Uploaded Soon!!!">
+                </div>
+               <div class="back">
+                    <img src="hole.png" class="hole" alt="Image Missing Will be Uploaded Soon!!!">
+               </div>
 
-}
-.row
-{
-	position: relative;
-	margin-left: 0px!important;
-	margin-right: 0px!important;
-}
+            </div>
+        </div>
+      </div>
+ 
+  </div>
+  <button class="btn btn-outline-primary text-center" id="butn2" style="margin-left: 40%;margin-right: 40%;height: 70px;width: 150px;">PLAY AGAIN</button>
+  <p id="endsc" style="text-align: center;font-size: 90px;color: black ;font-family: 'Gamja Flower', cursive;text-align: center;position: absolute;padding-left: 23%;padding-top: 6%;"></p>
+  
 
-</style>
-<body>
-
-	<section id="sec">
-		<form>
-		<div class="container-fluid tem">
-			<h1><img src="/home/cedcoss/Downloads/hole.png" style="height: 20px;width: 70px;">Whack-a-Mole<img src="/home/cedcoss/Downloads/mole.png" style="width: 100px;"></h1>
-			<input class="btn btn-primary" type="reset" value="START" onclick="catc()" id="butn1" style="margin-left: 84%;height: 50px;width: 14%;"><p id="ti" style="float: right;"></p>
-			
-		<!-- <input class="btn btn-primary" type="submit" value="STOP" onclick="st()" id="butn2" style="margin-top: 80px;height: 50px;width: 190px;float: right;"> -->
-			<p id="sc">SCORE:</p>
-			<p id="hsc">HIGH SCORE:</p>
-			<p id="res"></p>
-
-			<p id="endsc" style="text-align: center;font-size: 90px;padding-top: 190px;color: black ;font-family: 'Gamja Flower', cursive;"></p>
-			<div class="row text-center" >
-				<div class="col-sm-4 md-4" >
-				<img src="/home/cedcoss/Downloads/hole.png" class="imag" id=1>
-				</div>
-				<div class="col-sm-4 md-4" >
-				<img src="/home/cedcoss/Downloads/hole.png" class="imag" id=2>
-				</div>
-				<div class="col-sm-4 md-4" >
-				<img src="/home/cedcoss/Downloads/hole.png" class="imag" id=3 >
-				</div>
-			</div>
-			<div class="row text-center" >
-				<div class="col-sm-4 md-4" >
-				<img src="/home/cedcoss/Downloads/hole.png" class="imag" id=4>
-				</div>
-				<div class="col-sm-4 md-4" >
-				<img src="/home/cedcoss/Downloads/hole.png" class="imag" id=5>
-				</div>
-				<div class="col-sm-4 md-4" >
-				<img src="/home/cedcoss/Downloads/hole.png" class="imag" id=6> 
-				</div>
-			</div>
-		
-		<div>
-		</form>
-		<button class="btn btn-outline-primary" id="butn3" style="margin-left: 40%;margin-right: 40%;height: 70px;width: 150px;">PLAY AGAIN</button>
-	</section>
-
-
-	<script>
-		butn3.style.visibility="hidden";
-		var time=15;var newscore;
-		var ref=0;
-		var highscore=getCookies('score');
-		function catc()
-		{
-			if(time>0)
-			{
-				var newscore=0;
-				var ran=Math.floor(Math.random() *6)+1;
-				console.log(ran);
-				// document.querySelector(ran).style.backgroundImage=" url('/home/cedcoss/Downloads/hole.png')";
-
-			document.getElementById(ran).style.backgroundImage="url('/home/cedcoss/Downloads/mole.png')";
-			document.getElementById(ran).style.backgroundSize="380px 300px";
-			document.getElementById(ran).style.backgroundSize="380px 300px";
-			// document.getElementById(ran).style.backgroundImage=" url('/home/cedcoss/Downloads/mouse2.gif')";
-		
-			setTimeout(() => { document.getElementById(ran).style.backgroundImage="none";
-		  catc();}, 600);
-
-			
-			//$(".mo").hide();
-			       	document.getElementById(ran).addEventListener('click',function(){
-            newscore=newscore+1;
-            document.getElementById('sc').innerHTML="SCORE: "+newscore;
-            if(newscore>highscore)
-            {
-            	highscore=newscore;
-            }
-            document.getElementById("hsc").innerHTML=highscore;
-            
-
-        });
-		}time--;
-		document.getElementById('ti').innerHTML="TIME LEFT: "+(time+1);	 
-		if(time==0)
-		 {
-		 	setTimeout(function(){ st(); }, 1000);
-		 }
-		 else
-		 {
-		 	//do nothing;
-		 }
-		  }
-
-		function st()
-		{
-			// document.querySelector('.container-fluid').style.backgroundColor="red";
-			// document.querySelector('.container-fluid').style.backgroundImage=" url('https://media.giphy.com/media/Eqz8ZFUScPHH2/giphy.gif')";
-			// document.querySelector('.container-fluid').style.backgroundSize="cover";
-			// document.querySelector('.container-fluid').style.backgroundRepeat="no repeat";
-			
-			sc.style.display="none";
-			hsc.style.display="none";
-			ti.style.display="none";
-			butn1.style.display="none";
-			
-			 var divsToHide = document.getElementsByClassName("imag"); //divsToHide is an array
-    		for(var i = 0; i < divsToHide.length; i++){
-        // divsToHide[i].style.visibility = "hidden"; // or
-        	divsToHide[i].style.display = "none";
-        	
-   		 }
-   		 	
-    		butn3.style.visibility="visible";
-    		document.getElementById("endsc").innerHTML="YOUR SCORE IS:"+newscore;
-		 }
-		 
-		 function setCookies(high)
-		 {
-		 	document.cookie="score="+score;
-		 }
-
-		 function getCookies(cname)
-		 {
-				 	var name = cname + "=";
-		  var decodedCookie = decodeURIComponent(document.cookie);
-		  var ca = decodedCookie.split(';');
-		  for(var i = 0; i <ca.length; i++) {
-		    var c = ca[i];
-		    while (c.charAt(0) == ' ') {
-		      c = c.substring(1);
-		    }
-		    if (c.indexOf(name) == 0) {
-		      return c.substring(name.length, c.length);
-		    }
-  			}
-  				return "";
-		 }
-
-
-
-
-		 	function wish()
-		 	{
-
-		 	}
-	</script>
-</body>
+</form>
+      <script>  butn2.style.visibility="hidden";</script>
+  </body>
 </html>
-  <!-- rand = Math.floor(Math.random() * 9); -->
-        
-        <!-- var box = document.getElementById(rand); -->
-        <!-- document.getElementById(rand).style.backgroundImage = "url('dance.gif')"; -->
-        <!-- var timeout= setTimeout(() => { document.getElementById(rand).style.backgroundImage = "none"; }, 2000); -->
